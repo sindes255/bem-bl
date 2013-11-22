@@ -1,7 +1,7 @@
 /**
  * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
  *
- * @version 0.6.8
+ * @version 0.6.7
  * @codingstandard ftlabs-jsv2
  * @copyright The Financial Times Limited [All Rights Reserved]
  * @license MIT License (see LICENSE.txt)
@@ -499,10 +499,7 @@ FastClick.prototype.onTouchEnd = function(event) {
     // See issue #57; also filed as rdar://13048589 .
     if (this.deviceIsIOSWithBadTarget) {
         touch = event.changedTouches[0];
-
-        // In certain cases arguments of elementFromPoint can be negative, so prevent setting targetElement to null
-        targetElement = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset) || targetElement;
-        targetElement.fastClickScrollParent = this.targetElement.fastClickScrollParent;
+        targetElement = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset);
     }
 
     targetTagName = targetElement.tagName.toLowerCase();
@@ -738,3 +735,5 @@ if (typeof define !== 'undefined' && define.amd) {
 } else {
     window.FastClick = FastClick;
 }
+
+FastClick.attach(document.body);
