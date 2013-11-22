@@ -1,6 +1,6 @@
 ({
     mustDeps: [
-        { block: 'i-fastclick' },
+        { block: 'i-fast-click' },
         { block: 'i-pointer-events' }
     ]
 })
